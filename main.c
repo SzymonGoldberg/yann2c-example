@@ -23,7 +23,7 @@ int main (void)
 	nn_add_layer(nn, 40, 784, 60000, ReLU, 0.5);
 	nn_add_layer(nn, 10, 0, 0, NULL, 0.0);
 
-	nn_backpropagation(nn, input, expected_output, 0.01, 1);
+	nn_backpropagation(nn, input, expected_output, 0.01, 1, 1);
 
 	nn_free(nn);
 	matrix_free(input);
