@@ -34,7 +34,7 @@ int main (void)
 	struct matrix_node* ptr_in = input->head;
 	struct matrix_node* ptr_out = expected_output->head;
 
-	for(int i = 0; i < 1000; ++i)
+	for(int i = 0; i < 100; ++i)
 	{
 	       nn_backpropagation(nn, ptr_in->matrix, ptr_out->matrix, 0.01, 1, 1); 
 	       ptr_in = ptr_in->next;
