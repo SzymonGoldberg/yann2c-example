@@ -25,7 +25,7 @@ int main (void)
 		return 1;
 	}
 		//		size	input	batch	actv func	dropout_rate
-	nn_add_layer(nn, 	40, 	784, 	10, 	ReLU, 		0.4);
+	nn_add_layer(nn, 	40, 	784, 	10, 	ReLU, 		0.5);
 	nn_add_layer(nn, 	10, 	0, 	10, 	NULL, 		0.0);
 
 	matrix_fill_rng(nn->head->weights, 0.1, 0.9);
@@ -34,14 +34,14 @@ int main (void)
 	struct matrix_node* ptr_in = input->head;
 	struct matrix_node* ptr_out = expected_output->head;
 
-	for(int i = 0; i < 100; ++i)
+	for(int i = 0; i < 1000; ++i)
 	{
 	       nn_backpropagation(nn, ptr_in->matrix, ptr_out->matrix, 0.01, 1, 1); 
 	       ptr_in = ptr_in->next;
 	       ptr_out = ptr_out->next;
 	       if(ptr_in == NULL || ptr_out == NULL) break;
 	}
-
+	
 	matrix_array_free(input);
 	matrix_array_free(expected_output);
 	nn_free(nn);
