@@ -20,13 +20,20 @@ int main (void)
 		matrix_free(expected_output);
 		return 1;
 	}
-	nn_add_layer(nn, 40, 784, 60000, ReLU, 0.5);
-	nn_add_layer(nn, 10, 0, 0, NULL, 0.0);
+		//		size	input	batch	actv func	dropout_rate
+	nn_add_layer(nn, 	40, 	784, 	60000, 	ReLU, 		0.4);
+	nn_add_layer(nn, 	10, 	0, 	0, 	NULL, 		0.0);
+
+	matrix_fill_rng(nn->head->weights, 0.1, 0.9);
+	matrix_fill_rng(nn->tail->weights, 0.1, 0.9);
 
 	nn_backpropagation(nn, input, expected_output, 0.01, 1, 1);
 
-	nn_free(nn);
+	nn->tail->weights->y = 10;
+	matrix_display(*nn->tail->weights);
+
 	matrix_free(input);
 	matrix_free(expected_output);
+
 	return 0;
 }
