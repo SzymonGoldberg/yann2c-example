@@ -27,7 +27,7 @@ int main (void)
 		return 1;
 	}
 		//   network   	size	input	batch	actv func	dropout_rate
-	nn_add_layer(nn, 	40, 	784, 	10, 	ReLU, 		0.5);
+	nn_add_layer(nn, 	300, 	784, 	10, 	ReLU, 		0.5);
 	nn_add_layer(nn, 	10, 	0, 	10, 	NULL, 		0.0);
 
 		//		matrix			min	max
@@ -39,6 +39,7 @@ int main (void)
 
 	for(int i = 0; i < 6000; ++i)
 	{
+		nn_softmax(nn);
 		nn_backpropagation(nn, ptr_in->matrix, ptr_out->matrix, 0.01, 1, 0); 
 		ptr_in = ptr_in->next;
 		ptr_out = ptr_out->next;
