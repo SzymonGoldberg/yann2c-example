@@ -30,9 +30,8 @@ int main (void)
 	nn_add_layer(nn, 	300, 	784, 	10, 	ReLU, 		0.5);
 	nn_add_layer(nn, 	10, 	0, 	10, 	NULL, 		0.0);
 
-		//		matrix			min	max
-	matrix_fill_rng(	nn->head->weights,	-0.01,	0.01);
-	matrix_fill_rng(	nn->tail->weights,	-0.01,	0.01);
+		//	network		min	max
+	nn_fill_rng(	nn,		-0.01,	0.01);
 
 	struct matrix_node* ptr_in = input->head;
 	struct matrix_node* ptr_out = expected_output->head;
